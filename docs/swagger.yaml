@@ -1,0 +1,109 @@
+definitions:
+  models.Book:
+    properties:
+      author:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      nameBook:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /book:
+    post:
+      consumes:
+      - application/json
+      description: Get details of car corresponding to the input id
+      parameters:
+      - description: create car
+        in: body
+        name: models.Book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Post details for a given id
+      tags:
+      - book
+  /book/{Id}:
+    get:
+      consumes:
+      - application/json
+      description: Get details of car corresponding to the input id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get details for a given id
+      tags:
+      - book
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all book
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get details
+      tags:
+      - books
+  /books/{Id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the book corresponding to the input id
+      parameters:
+      - description: ID of the book to be deleted
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+      summary: Delete book identified by given id
+      tags:
+      - books
+    patch:
+      consumes:
+      - application/json
+      description: Update details of book corresponding to the input id
+      parameters:
+      - description: ID of the book to be updated
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Update book identified by given id
+      tags:
+      - books
+swagger: "2.0"

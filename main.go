@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "books/docs"
 	"books/routers"
 )
 

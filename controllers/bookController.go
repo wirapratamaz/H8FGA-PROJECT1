@@ -9,7 +9,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// *parameter c yang merupakan objek dari gin.Context.
+// CreateBook godoc
+// @Summary Post details for a given id
+// @Description Get details of car corresponding to the input id
+// @Tags book
+// @Accept json
+// @Produce json
+// @Param models.Book body models.Book true "create car"
+// @Success 200 {object} models.Book
+// @Router /book [post]
 func CreateBook(c *gin.Context) {
 	//koneksi ke database
 	database.StartDB()
@@ -39,6 +47,14 @@ func CreateBook(c *gin.Context) {
 		"data": bookInput})
 }
 
+// GetAllBook godoc
+// @Summary Get details
+// @Description Get details of all book
+// @Tags books
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Book
+// @Router /books [get]
 func GetAllBooks(c *gin.Context) {
 	database.StartDB()
 	var db = database.GetDB()
@@ -56,6 +72,14 @@ func GetAllBooks(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": book})
 }
 
+// GetOneBook godoc
+// @Summary Get details for a given id
+// @Description Get details of car corresponding to the input id
+// @Tags book
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Book
+// @Router /book/{Id} [get]
 func GetOneBook(c *gin.Context) {
 	database.StartDB()
 	var db = database.GetDB()
@@ -74,6 +98,15 @@ func GetOneBook(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data one": bookOne})
 }
 
+// UpdateBook godoc
+// @Summary Update book identified by given id
+// @Description Update details of book corresponding to the input id
+// @Tags books
+// @Accept json
+// @Produce json
+// @Param id path int true "ID of the book to be updated"
+// @Success 200 {object} models.Book
+// @Router /books/{Id} [patch]
 func UpdateBook(c *gin.Context) {
 	database.StartDB()
 	var db = database.GetDB()
@@ -104,6 +137,15 @@ func UpdateBook(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": bookUpdate})
 }
 
+// DeleteBook godoc
+// @Summary Delete book identified by given id
+// @Description Delete the book corresponding to the input id
+// @Tags books
+// @Accept json
+// @Produce json
+// @Param id path int true "ID of the book to be deleted"
+// @Success 204 "No content"
+// @Router /books/{Id} [delete]
 func DeleteBook(c *gin.Context) {
 	database.StartDB()
 	var db = database.GetDB()
